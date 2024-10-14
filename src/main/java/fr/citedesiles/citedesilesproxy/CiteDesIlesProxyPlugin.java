@@ -7,6 +7,7 @@ import javax.inject.Inject;
 import com.velocitypowered.api.event.Subscribe;
 import com.velocitypowered.api.event.proxy.ProxyInitializeEvent;
 import com.velocitypowered.api.plugin.Plugin;
+import com.velocitypowered.api.proxy.ProxyServer;
 
 @Plugin(
     id = "citedesilesproxy",
@@ -15,11 +16,19 @@ import com.velocitypowered.api.plugin.Plugin;
 )
 
 public class CiteDesIlesProxyPlugin {
+    @SuppressWarnings("unused")
+    private final ProxyServer server;
+    private final Logger logger;
+
     @Inject
-    private Logger logger;
+    public CiteDesIlesProxyPlugin(ProxyServer server, Logger logger) {
+        this.server = server;
+        this.logger = logger;
+        logger.info("Construction du plugin...");
+    }
 
     @Subscribe
     public void onProxyInitialization(ProxyInitializeEvent event) {
-        logger.info("Cité des Iles Proxy initialized");
+        logger.info("Plugin chargé !");
     }
 }
