@@ -1,0 +1,8 @@
+name: CDIProxy
+main: fr.citedesiles.citedesilesproxy.CDIProxy
+version: 1.0
+author: Azrotho
+commands:
+  padmin:
+    description: Admin command
+    usage: /padmin
