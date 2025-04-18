@@ -50,6 +50,33 @@ public class PAdminCommand extends Command {
                 player.sendMessage("You are not allowed to use this command.");
                 return;
             }
+        } else {
+            if(strings[0].equals("add")) {
+                if(strings.length < 2) {
+                    commandSender.sendMessage("Usage: /padmin add <player>");
+                    return;
+                }
+                ProxiedPlayer target = CDIProxy.getInstance().getProxy().getPlayer(strings[1]);
+                if(target == null) {
+                    commandSender.sendMessage("Player not found.");
+                    return;
+                }
+                CDIProxy.playerAllowed.add(target.getUniqueId());
+                commandSender.sendMessage("Player " + target.getName() + " has been added to the admin list.");
+            }
+            if(strings[0].equals("remove")) {
+                if(strings.length < 2) {
+                    commandSender.sendMessage("Usage: /padmin remove <player>");
+                    return;
+                }
+                ProxiedPlayer target = CDIProxy.getInstance().getProxy().getPlayer(strings[1]);
+                if(target == null) {
+                    commandSender.sendMessage("Player not found.");
+                    return;
+                }
+                CDIProxy.playerAllowed.remove(target.getUniqueId());
+                commandSender.sendMessage("Player " + target.getName() + " has been removed from the admin list.");
+            }
         }
     }
 }
